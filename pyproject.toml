@@ -1,0 +1,9 @@
+[project]
+name = "github_tools"
+version = "0.1.0"
+description = "GitHub Tools Plugin for Dify"
+requires-python = ">=3.12"
+dependencies = [
+    "dify_plugin>=0.5.0",
+    "httpx>=0.27.0",
+]

@@ -1,0 +1,63 @@
+identity:
+  name: search_repos
+  author: "xiang"
+  label:
+    en_US: Search Repositories
+    zh_Hans: 搜索仓库
+description:
+  human:
+    en_US: Search GitHub repositories by keywords. Returns repo name, description, stars, language, and URL.
+    zh_Hans: 通过关键词搜索 GitHub 仓库。返回仓库名称、描述、Star数、编程语言和链接。
+  llm: Search GitHub repositories by keywords. Returns repo name, description, stars, language, and URL.
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Search Query
+      zh_Hans: 搜索关键词
+    human_description:
+      en_US: Keywords to search for repositories
+      zh_Hans: 搜索仓库的关键词
+    llm_description: Keywords to search for GitHub repositories
+    form: llm
+  - name: sort
+    type: select
+    required: false
+    default: stars
+    options:
+      - value: stars
+        label:
+          en_US: Stars
+          zh_Hans: 星数
+      - value: forks
+        label:
+          en_US: Forks
+          zh_Hans: Fork数
+      - value: updated
+        label:
+          en_US: Recently Updated
+          zh_Hans: 最近更新
+    label:
+      en_US: Sort By
+      zh_Hans: 排序方式
+    human_description:
+      en_US: Sort results by stars, forks, or last updated time
+      zh_Hans: 按星标数、Fork数或最后更新时间排序
+    form: form
+  - name: limit
+    type: number
+    required: false
+    default: 5
+    min: 1
+    max: 20
+    label:
+      en_US: Result Count
+      zh_Hans: 返回数量
+    human_description:
+      en_US: Number of results to return (1-20)
+      zh_Hans: 返回结果数量（1-20）
+    form: form
+extra:
+  python:
+    source: tools/search_repos.py

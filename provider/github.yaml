@@ -1,0 +1,39 @@
+identity:
+  author: "xiang"
+  name: "github_tools"
+  label:
+    en_US: "GitHub Tools"
+    zh_Hans: "GitHub 工具箱"
+  description:
+    en_US: Search repositories, view README, list issues, and get repo info from GitHub
+    zh_Hans: 搜索仓库、查看 README、列出 Issue、获取仓库详情
+  icon: icon.svg
+  tags:
+    - other
+    - productivity
+credentials_for_provider:
+  github_token:
+    type: secret-input
+    required: false
+    label:
+      en_US: GitHub Personal Access Token
+      zh_Hans: GitHub 个人访问令牌
+    placeholder:
+      en_US: "Optional - leave empty for public repos only (rate limit: 60 req/h)"
+      zh_Hans: "可选 - 留空仅可访问公开仓库（限频 60 次/小时）"
+    help:
+      en_US: |
+        Creates a token with 'repo' and 'public_repo' scopes.
+        Get one at: https://github.com/settings/tokens
+      zh_Hans: |
+        创建一个有 'repo' 和 'public_repo' 权限的 token。
+        在 https://github.com/settings/tokens 获取
+    url: https://github.com/settings/tokens
+tools:
+  - tools/search_repos.yaml
+  - tools/get_readme.yaml
+  - tools/list_issues.yaml
+  - tools/get_repo_info.yaml
+extra:
+  python:
+    source: provider/github.py

@@ -1,0 +1,37 @@
+identity:
+  name: get_readme
+  author: "xiang"
+  label:
+    en_US: Get Repository README
+    zh_Hans: 获取仓库 README
+description:
+  human:
+    en_US: Fetch the README content of a GitHub repository. Returns both raw Markdown and rendered text.
+    zh_Hans: 获取 GitHub 仓库的 README 内容。同时返回原始 Markdown 和纯文本。
+  llm: Fetch the README content of a GitHub repository. Returns both raw Markdown and rendered text.
+parameters:
+  - name: repo
+    type: string
+    required: true
+    label:
+      en_US: Repository
+      zh_Hans: 仓库
+    human_description:
+      en_US: Repository name in format 'owner/repo', e.g. 'langgenius/dify'
+      zh_Hans: 仓库名称，格式为 'owner/repo'，例如 'langgenius/dify'
+    llm_description: Repository name in format 'owner/repo', e.g. 'langgenius/dify'
+    form: llm
+  - name: extract_code
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Extract Code Snippets
+      zh_Hans: 提取代码片段
+    human_description:
+      en_US: Whether to extract code snippets from the README
+      zh_Hans: 是否从 README 中提取代码片段
+    form: form
+extra:
+  python:
+    source: tools/get_readme.py

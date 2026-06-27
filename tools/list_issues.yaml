@@ -1,0 +1,74 @@
+identity:
+  name: list_issues
+  author: "xiang"
+  label:
+    en_US: List Repository Issues
+    zh_Hans: 列出仓库 Issues
+description:
+  human:
+    en_US: List open issues from a GitHub repository. Filter by labels and state.
+    zh_Hans: 列出 GitHub 仓库的 Issues。可按标签和状态筛选。
+  llm: List open issues from a GitHub repository. Returns issue title, number, state, labels, and URL.
+parameters:
+  - name: repo
+    type: string
+    required: true
+    label:
+      en_US: Repository
+      zh_Hans: 仓库
+    human_description:
+      en_US: Repository name in format 'owner/repo', e.g. 'langgenius/dify'
+      zh_Hans: 仓库名称，格式为 'owner/repo'，例如 'langgenius/dify'
+    llm_description: Repository name in format 'owner/repo', e.g. 'langgenius/dify'
+    form: llm
+  - name: state
+    type: select
+    required: false
+    default: open
+    options:
+      - value: open
+        label:
+          en_US: Open
+          zh_Hans: 进行中
+      - value: closed
+        label:
+          en_US: Closed
+          zh_Hans: 已关闭
+      - value: all
+        label:
+          en_US: All
+          zh_Hans: 全部
+    label:
+      en_US: Issue State
+      zh_Hans: Issue 状态
+    human_description:
+      en_US: Filter issues by state - open, closed, or all
+      zh_Hans: 按状态筛选 Issue - open、closed 或 all
+    form: form
+  - name: labels
+    type: string
+    required: false
+    label:
+      en_US: Filter by Labels (comma separated)
+      zh_Hans: 按标签筛选（逗号分隔）
+    human_description:
+      en_US: Filter by labels, e.g. 'bug,enhancement'. Leave empty for all.
+      zh_Hans: 按标签筛选，例如 'bug,enhancement'。留空不过滤。
+    llm_description: Filter by labels, comma separated, e.g. 'bug,enhancement'
+    form: form
+  - name: limit
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 50
+    label:
+      en_US: Result Count
+      zh_Hans: 返回数量
+    human_description:
+      en_US: Number of issues to return (1-50)
+      zh_Hans: 返回 Issue 数量（1-50）
+    form: form
+extra:
+  python:
+    source: tools/list_issues.py
